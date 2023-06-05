@@ -1,0 +1,41 @@
+
+    // algorithm
+1- Initialize a variable 'sum' to store the sum of distinct elements and set it to 0.
+2- Loop through each element in the first set and second set:
+	a/ first element: if 'set1[i]' not include in 'set2' add it to 'sum'
+	b/ second element: if 'set2[i]' not include in 'set1' add it to 'sum'
+3- return 'sum'
+//
+
+
+
+FUNCTION distinct(set1,set2 : ARRAY_OF INTEGER[length];) : INTEGER
+VAR
+sum,i,j: INTEGER;
+include:=FALSE;
+BEGIN
+sum:=0;
+FOR i FROM 0 TO set1.length  DO
+WHILE (j<set2.length OR include:=TRUE) DO
+IF (set1[i]=set2[j]) THEN
+include:=TRUE ;
+END_IF
+j:=j+1;
+END_WHILE
+IF (include:=false) THEN
+sum:=sum+set1[i];
+
+
+FOR i FROM 0 TO set2.length  DO
+WHILE (j<set1.length OR include:=TRUE) DO
+IF (set2[i]=set1[j]) THEN
+include:=TRUE ;
+END_IF
+j:=j+1;
+END_WHILE
+IF (include:=false) THEN
+sum:=sum+set2[i];
+END_IF
+END_FOR
+writre ("somme est ",sum)
+END
